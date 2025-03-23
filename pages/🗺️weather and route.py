@@ -4,7 +4,7 @@ import pydeck as pdk
 
 # Page Configuration
 st.set_page_config(
-    page_title="Sahayta.ai - Smart Relief",
+    page_title="CrisisPilot - Smart Relief",
     page_icon="🏠",
     layout="wide",
     initial_sidebar_state="expanded"

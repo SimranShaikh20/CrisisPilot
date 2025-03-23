@@ -148,8 +148,8 @@ def local_css():
 def render_hero_section():
     """Render the hero section of the homepage"""
     st.markdown("""
-    <div class="hero-container" aria-label="Sahayta.ai Homepage">
-        <div class="hero-title">Sahayta.ai</div>
+    <div class="hero-container" aria-label="CrisisPilot Homepage">
+        <div class="hero-title">CrisisPilot</div>
         <div class="hero-subtitle">
             Empowering Disaster Response with Artificial Intelligence
         </div>
@@ -184,7 +184,7 @@ def render_mission_section():
     <div class="mission-section">
         <div class="mission-title">Our Mission</div>
         <div class="mission-description">
-            At Sahayta.ai, we are committed to revolutionizing disaster response through cutting-edge 
+            At CrisisPilot, we are committed to revolutionizing disaster response through cutting-edge 
             artificial intelligence. Our mission is to provide timely, accurate, and actionable insights 
             that can save lives, protect communities, and minimize the impact of natural disasters.
         </div>
@@ -201,7 +201,7 @@ def render_technology_architecture():
     st.markdown("""
         <div style="display: flex; justify-content: center; align-items: center; margin: 2rem 0;">
             <div style="width: 100%; max-width: 1000px; background: #1e2127; padding: 1.5rem; border-radius: 15px; text-align: center;">
-                <p style="color: #00B4DB; font-size: 24px; font-weight: bold; margin: 0;">Sahayta.ai Architecture</p>
+                <p style="color: #00B4DB; font-size: 24px; font-weight: bold; margin: 0;">CrisisPilot Architecture</p>
             </div>
         </div>
     """, unsafe_allow_html=True)
@@ -305,24 +305,35 @@ def render_technology_architecture():
 def render_cta_section():
     """Render the call to action section"""
     st.markdown("""
-    <div class="cta-section">
-        <h2 style="margin-bottom: 1rem;">Join Our Mission</h2>
-        <p style="max-width: 600px; margin: 0 auto 1.5rem; font-size: 1.1rem;">
-            Together, we can build a more resilient world. Explore our tools, 
-            learn about our technology, and help us make a difference.
-        </p>
-        <div class="cta-buttons">
-            <a href="https://github.com/Niraj1608/Sahayta.ai/blob/main/README.md" class="cta-button cta-primary" aria-label="Learn More About Sahayta.ai">Learn More</a>
-            <a href="https://www.linkedin.com/in/niraj-parmar-531b5523a/" class="cta-button cta-secondary" aria-label="Contact Sahayta.ai">Contact Us</a>
-        </div>
+   <div class="cta-section">
+    <h2 style="margin-bottom: 1rem;">Join Our Mission</h2>
+    <p style="max-width: 600px; margin: 0 auto 1.5rem; font-size: 1.1rem;">
+        Together, we can build a more resilient world. Explore our tools, 
+        learn about our technology, and help us make a difference.
+    </p>
+    <div class="cta-buttons">
+        <a href="https://github.com/SimranShaikh20/CrisisPilot/blob/main/README.md" 
+           class="cta-button cta-primary" 
+           aria-label="Learn More About CrisisPilot" 
+           style="background-color: #0099ff; color: #ffffff; font-weight: bold; text-decoration: none;">
+            Learn More
+        </a>
+        <a href="https://www.linkedin.com/in/simran-shaikh-39207a23b" 
+           class="cta-button cta-secondary" 
+           aria-label="Contact CrisisPilot" 
+           style="border: 2px solid #0099ff; color: #0099ff; font-weight: bold; text-decoration: none;">
+            Contact Us
+        </a>
     </div>
+</div>
+
     """, unsafe_allow_html=True)
 
 def main():
     """Main application entry point"""
     # Page Configuration
     st.set_page_config(
-        page_title="Sahayta.ai - Home",
+        page_title="CrisisPilot - Home",
         page_icon="🏠",
         layout="wide",
         initial_sidebar_state="expanded",
