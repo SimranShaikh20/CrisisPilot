@@ -1,8 +1,0 @@
-﻿streamlit
-supervision
-inference_sdk
-Pillow
-requests
-pydeck
-datetime
-opencv-python-headless
