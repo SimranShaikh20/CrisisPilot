@@ -1,168 +1,127 @@
-# Sahayta.ai - Smart Relief
-## *Transforming Disaster Response Through AI*
+import streamlit as st
+import requests
+import pydeck as pdk
 
-![Sahayta.ai Header](https://gist.githubusercontent.com/Niraj1608/306bc495d9b2815ecc313714e35a3752/raw/sahayta-header.svg)
+# Page Configuration
+st.set_page_config(
+    page_title="CrisisPilot - Smart Relief",
+    page_icon="🏠",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-[![Python](https://img.shields.io/badge/Python-3.12%2B-blue)](https://www.python.org/)
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.0%2B-orange)](https://tensorflow.org/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-red)](https://pytorch.org/)
+# Weather API Key (Use secrets in production)
+WEATHER_API_KEY = st.secrets["weather_api_key"] if "weather_api_key" in st.secrets else "your_default_api_key"
 
-## Inspiration
-Natural disasters strike without warning, leaving communities vulnerable and emergency responders racing against time. We were deeply moved by recent catastrophic events where delayed response times led to preventable losses. This inspired us to leverage cutting-edge AI technology to revolutionize disaster management and potentially save countless lives.
+# Helper Functions
+def get_weather(city_name):
+    """Fetch weather data for a given city."""
+    base_url = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={WEATHER_API_KEY}&units=metric"
+    response = requests.get(base_url)
+    return response.json() if response.status_code == 200 else None
 
-## What it does
-Sahayta.ai is a comprehensive disaster management solution that combines multiple AI-powered systems:
 
-### 1. Early-Stage Wildfire Detection 
-- Analyzes NOAA-20 VIIRS satellite imagery in real-time
-- Achieves 90.5% accuracy using transfer-learned RESNET101
-- Provides immediate alerts to emergency response teams
+def get_coordinates(city_name):
+    """Get coordinates for a given city."""
+    base_url = f"https://nominatim.openstreetmap.org/search?q={city_name}&format=json&limit=1"
+    headers = {'User-Agent': 'SahaytaApp/1.0'}
+    response = requests.get(base_url, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        if data:
+            return float(data[0]['lat']), float(data[0]['lon'])
+    return None, None
 
-### 2. Drone-Based Victim Detection 
-- Implements YOLOv8 for real-time human detection
-- Enables swift aerial search and rescue operations
-- Processes high-resolution imagery for accurate victim localization
 
-### 3. AI-Powered Flood Analysis 
-- Performs semantic segmentation using U-NET architecture
-- Maps flood-affected areas for resource optimization
-- Generates actionable insights for emergency responders
+def generate_map(start_coords, end_coords=None):
+    """Generate a map with route and location markers."""
+    layers = [
+        pdk.Layer(
+            "ScatterplotLayer",
+            data=[{"position": [start_coords[1], start_coords[0]], "color": [46, 204, 113], "radius": 350}],
+            get_position="position",
+            get_color="color",
+            get_radius="radius",
+            pickable=True,
+        )
+    ]
+    if end_coords:
+        layers.extend([
+            pdk.Layer(
+                "LineLayer",
+                data=[{
+                    "start_lat": start_coords[0],
+                    "start_lon": start_coords[1],
+                    "end_lat": end_coords[0],
+                    "end_lon": end_coords[1],
+                }],
+                get_source_position=["start_lon", "start_lat"],
+                get_target_position=["end_lon", "end_lat"],
+                get_color=[52, 152, 219],
+                width_scale=2,
+                width_min_pixels=3,
+            ),
+            pdk.Layer(
+                "ScatterplotLayer",
+                data=[{"position": [end_coords[1], end_coords[0]], "color": [231, 76, 60], "radius": 350}],
+                get_position="position",
+                get_color="color",
+                get_radius="radius",
+                pickable=True,
+            )
+        ])
+    view_state = pdk.ViewState(
+        latitude=start_coords[0],
+        longitude=start_coords[1],
+        zoom=10,
+        pitch=45,
+    )
+    return pdk.Deck(
+        layers=layers,
+        initial_view_state=view_state,
+        map_style="light",
+        tooltip={"text": "Location"},
+    )
 
-### 4. Integrated Emergency Response System 
-- Monitors real-time weather conditions
-- Identifies high-risk zones through geolocation
-- Includes animal welfare protection features
-- Predicts risk levels using weather-location correlation
 
-## How we built it
+# Main Sections
+def weather_section():
+    st.subheader("📍 Weather Monitor")
+    city_name = st.text_input("Enter City Name:", placeholder="e.g., New Delhi")
+    if st.button("Get Weather Updates"):
+        if city_name:
+            weather_data = get_weather(city_name)
+            if weather_data and 'main' in weather_data:
+                st.success(f"Current Weather in {city_name}")
+                st.write(f"**Temperature:** {weather_data['main']['temp']}°C")
+                st.write(f"**Humidity:** {weather_data['main']['humidity']}%")
+                st.write(f"**Conditions:** {weather_data['weather'][0]['description'].capitalize()}")
+            else:
+                st.error("Unable to fetch weather data. Please check the city name.")
 
-### 1. Data Collection & Preprocessing 
-- Gathered satellite imagery from NOAA-20 VIIRS
-- Created custom datasets for victim detection
-- Preprocessed flood mapping data for segmentation
 
-### 2. Model Development 
-- Implemented transfer learning on RESNET101 for wildfire detection
-- Trained YOLOv8 for human detection in aerial imagery
-- Developed U-NET architecture for flood segmentation
+def route_section():
+    st.subheader("🟡 Emergency Route Planner")
+    start_location = st.text_input("Start Location:", placeholder="e.g., Mumbai")
+    destination_location = st.text_input("Destination:", placeholder="e.g., Pune")
+    if st.button("Plan Emergency Route"):
+        if start_location and destination_location:
+            start_coords = get_coordinates(start_location)
+            end_coords = get_coordinates(destination_location)
+            if start_coords and end_coords:
+                st.success(f"Emergency Route: {start_location} → {destination_location}")
+                st.pydeck_chart(generate_map(start_coords, end_coords))
+            else:
+                st.error("Could not locate one or both locations. Please check the names.")
 
-### 3. Integration & Deployment 
-- Built API endpoints for real-time data processing
-- Created Streamlit-based web interface
-- Implemented cloud-based processing pipeline
 
-## Technical Architecture & ML Pipeline
+# Main App
+def main():
+    tab1, tab2 = st.tabs(["🌦️ Weather Monitor", "🟡 Route Planner"])
+    with tab1:
+        weather_section()
+    with tab2:
+        route_section()
 
-![Sahayta.ai ML Architecture](https://gist.githubusercontent.com/Niraj1608/8d1fc288c82a0f1bf69c91369ac9879e/raw/df6629e4b216b2bd19442b960449f42fd2668d46/arc1.svg)
-
-Our intelligent disaster response system leverages three specialized ML models working in parallel:
-
-### Model Architecture
-
-1. **Wildfire Detection Using RESNET101**
-   - Transfer learning on NOAA-20 VIIRS satellite imagery
-   - 90.5% detection accuracy in varied conditions
-   - Real-time monitoring and early warning system
-   - Custom-tuned for different terrain types
-
-2. **Victim Detection with YOLOv8**
-   - Real-time processing of drone footage
-   - High-precision human detection in disaster zones
-   - Optimized for aerial viewpoints
-   - Low-latency for immediate response
-
-3. **Flood Analysis via U-NET**
-   - Advanced semantic segmentation
-   - Precise mapping of flood-affected regions
-   - Resource allocation optimization
-   - Real-time flood progression tracking
-
-### Data Pipeline
-
-- **Input Sources:**
-  - Satellite imagery (NOAA-20 VIIRS)
-  - Real-time drone feeds
-  - Semantic mapping data
-  - Weather and terrain information
-
-- **Processing Layer:**
-  - Parallel processing of multiple data streams
-  - GPU-accelerated inference
-  - Edge computing integration
-  - Automated alert generation
-
-- **Output Systems:**
-  - Emergency alert distribution
-  - Risk zone visualization
-  - Resource optimization engine
-  - Real-time situation dashboard
-
-This integrated approach enables swift, accurate disaster response while optimizing resource allocation for maximum impact.
-
-## Challenges we ran into 
-
-### Technical Challenges
-- Processing large satellite imagery datasets
-- Optimizing model performance for real-time detection
-- Handling varying weather and lighting conditions
-
-### Integration Challenges
-- Combining multiple AI models into a unified system
-- Ensuring reliable real-time performance
-- Managing computational resources efficiently
-
-## Accomplishments that we're proud of 
-- Achieved 90.5% accuracy in wildfire detection
-- Successfully implemented real-time victim detection system
-- Created a user-friendly interface for emergency responders
-- Developed a scalable and integrated solution
-- Built a working prototype within the hackathon timeframe
-
-## What we learned 
-- Advanced computer vision techniques for disaster management
-- Real-time processing of satellite imagery
-- Integration of multiple AI models
-- Importance of user-centric design in emergency response systems
-- Collaborative problem-solving under time constraints
-
-## Social Impact
-1. Life-Saving Potential
-2. Community Resilience
-3. Environmental Protection
-4. Economic Benefits
-5. Long-term Sustainability
-
-## What's next for Sahayta.ai 
-
-### Technical Enhancements
-- Implement edge computing for faster processing
-- Expand to additional disaster types
-- Improve model accuracy through additional training
-
-### Feature Additions
-- Mobile app development for field teams
-- Integration with existing emergency response systems
-- Multi-language support for global deployment
-
-### Scaling & Deployment
-- Partner with disaster management agencies
-- Pilot programs in high-risk areas
-- Open-source community development
-
-## Built With
-- python
-- tensorflow
-- pytorch
-- streamlit
-- yolo
-- opencv
-- machine-learning
-- artificial-intelligence
-- computer-vision
-- deep-learning
-
----
-<div align="center">
-  <h3>Built with ❤️ by Team Sahayta</h3>
-  <p>Technology that saves lives</p>
-</div>
+if __name__ == "__main__":
+    main()
