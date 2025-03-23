@@ -1,7 +1,7 @@
-# 🚀 Sahayta.ai - Smart Relief
+# 🚀 CrisisPilot - Smart Relief
 ## *Transforming Disaster Response Through AI* 🌍
 
-![Sahayta.ai Header](https://gist.githubusercontent.com/Niraj1608/306bc495d9b2815ecc313714e35a3752/raw/sahayta-header.svg)
+![CrisisPilot Header](https://gist.githubusercontent.com/Niraj1608/306bc495d9b2815ecc313714e35a3752/raw/sahayta-header.svg)
 
 [![Python](https://img.shields.io/badge/Python-3.12%2B-blue)](https://www.python.org/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.0%2B-orange)](https://tensorflow.org/)
@@ -13,7 +13,7 @@
 Natural disasters strike without warning, leaving communities vulnerable and emergency responders racing against time. We were deeply moved by recent catastrophic events where delayed response times led to preventable losses. This inspired us to leverage cutting-edge AI technology to revolutionize disaster management and potentially save countless lives. ⏳💔
 
 ## 🌟 What It Does
-Sahayta.ai is a comprehensive disaster management solution that combines multiple AI-powered systems:
+CrisisPilot is a comprehensive disaster management solution that combines multiple AI-powered systems:
 
 ### 🔥 1. Early-Stage Wildfire Detection
 - Analyzes NOAA-20 VIIRS satellite imagery in real-time 🛰️
@@ -59,7 +59,7 @@ Sahayta.ai is a comprehensive disaster management solution that combines multipl
 
 ## 🏗️ Technical Architecture & ML Pipeline
 
-![Sahayta.ai ML Architecture](https://gist.githubusercontent.com/Niraj1608/8d1fc288c82a0f1bf69c91369ac9879e/raw/df6629e4b216b2bd19442b960449f42fd2668d46/arc1.svg)
+![CrisisPilot ML Architecture](https://gist.githubusercontent.com/Niraj1608/8d1fc288c82a0f1bf69c91369ac9879e/raw/df6629e4b216b2bd19442b960449f42fd2668d46/arc1.svg)
 
 Our intelligent disaster response system leverages three specialized ML models working in parallel:
 
@@ -148,7 +148,7 @@ This integrated approach enables swift, accurate disaster response while optimiz
 
 ---
 
-## 🔮 What's Next for Sahayta.ai
+## 🔮 What's Next for CrisisPilot
 
 ### 🔧 Technical Enhancements
 - **Implement edge computing** for faster processing ⚡
@@ -181,6 +181,6 @@ This integrated approach enables swift, accurate disaster response while optimiz
 ---
 
 <div align="center">
-  <h3>🚀 Built with ❤️ by Team Sahayta</h3>
+  <h3>🚀 Built with ❤️ by Team CrisisPilot</h3>
   <p>🌍 Technology that saves lives! 🌍</p>
 </div>
