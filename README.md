@@ -1,7 +1,7 @@
 # 🚀 CrisisPilot - Smart Relief
 ## *Transforming Disaster Response Through AI* 🌍
 
-![CrisisPilot Header](https://gist.githubusercontent.com/Niraj1608/306bc495d9b2815ecc313714e35a3752/raw/sahayta-header.svg)
+
 
 [![Python](https://img.shields.io/badge/Python-3.12%2B-blue)](https://www.python.org/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.0%2B-orange)](https://tensorflow.org/)
