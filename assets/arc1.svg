@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 580" preserveAspectRatio="xMidYMid meet">
+    <!-- Background -->
+    <rect width="880" height="580" fill="#1e2127" rx="20"/>
+    
+    <!-- Problem Boxes -->
+    <g transform="translate(90, 50)">
+        <!-- Problem 1 -->
+        <rect x="0" y="0" width="220" height="100" rx="10" fill="#363795" opacity="0.9"/>
+        <text x="110" y="30" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="sans-serif">Problem 1:</text>
+        <text x="110" y="55" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Inaccurate Resource</text>
+        <text x="110" y="75" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Allocation</text>
+        
+        <!-- Problem 2 -->
+        <rect x="240" y="0" width="220" height="100" rx="10" fill="#363795" opacity="0.9"/>
+        <text x="350" y="30" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="sans-serif">Problem 2:</text>
+        <text x="350" y="55" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">15+ Minutes Delay in</text>
+        <text x="350" y="75" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Disaster Information</text>
+        
+        <!-- Problem 3 -->
+        <rect x="480" y="0" width="220" height="100" rx="10" fill="#363795" opacity="0.9"/>
+        <text x="590" y="30" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="sans-serif">Problem 3:</text>
+        <text x="590" y="55" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Limited Situational</text>
+        <text x="590" y="75" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Awareness</text>
+    </g>
+    
+    <!-- Solution Architecture -->
+    <g transform="translate(40, 170)">
+        <!-- Input Sources -->
+        <g transform="translate(0, 40)">
+            <rect x="20" y="0" width="160" height="60" rx="8" fill="#005C97"/>
+            <text x="100" y="25" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Satellite Imagery</text>
+            <text x="100" y="45" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">(NOAA-20 VIIRS) 🛰️</text>
+
+            <rect x="20" y="80" width="160" height="60" rx="8" fill="#005C97"/>
+            <text x="100" y="105" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Drone Feed</text>
+            <text x="100" y="125" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">(Aerial Imagery) 📷</text>
+
+            <rect x="20" y="160" width="160" height="60" rx="8" fill="#005C97"/>
+            <text x="100" y="185" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">Flood Data</text>
+            <text x="100" y="205" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">(Semantic Maps) 🗺️</text>
+
+            <rect x="20" y="240" width="160" height="60" rx="8" fill="#005C97"/>
+            <text x="100" y="265" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">API Integrations</text>
+            <text x="100" y="285" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">(Weather &amp; Routes) 🌐</text>
+        </g>
+        
+        <!-- AI Core -->
+        <g transform="translate(280, 40)">
+            <rect x="0" y="0" width="240" height="300" rx="10" fill="#00B4DB"/>
+            <text x="120" y="35" text-anchor="middle" fill="white" font-size="18" font-weight="bold" font-family="sans-serif">AI Core</text>
+            <text x="120" y="70" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Wildfire Detection 🔥</text>
+            <text x="120" y="100" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Flood Detection 🌊</text>
+            <text x="120" y="130" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Flood Mask &amp; Segmentation 🎯</text>
+            <text x="120" y="160" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Weather Prediction ⛈️</text>
+            <text x="120" y="190" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Route Optimization 🛣️</text>
+        </g>
+        
+        <!-- Output -->
+        <g transform="translate(620, 40)">
+            <rect x="0" y="0" width="160" height="300" rx="10" fill="#005C97"/>
+            <text x="80" y="35" text-anchor="middle" fill="white" font-size="18" font-weight="bold" font-family="sans-serif">Services</text>
+            <text x="80" y="70" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Real-time Alerts ⚡</text>
+            <text x="80" y="100" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Disaster Maps 📍</text>
+            <text x="80" y="130" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Optimal Routes 🛣️</text>
+            <text x="80" y="160" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Weather Updates 🌡️</text>
+            <text x="80" y="190" text-anchor="middle" fill="white" font-size="14" font-family="sans-serif">• Resource Plans 📋</text>
+        </g>
+        
+        <!-- Arrows -->
+        <g>
+            <line x1="180" y1="70" x2="280" y2="70" stroke="#00B4DB" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="180" y1="150" x2="280" y2="150" stroke="#00B4DB" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="180" y1="230" x2="280" y2="230" stroke="#00B4DB" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="180" y1="310" x2="280" y2="310" stroke="#00B4DB" stroke-width="2" marker-end="url(#arrowhead)"/>
+            <line x1="520" y1="180" x2="620" y2="180" stroke="#00B4DB" stroke-width="2" marker-end="url(#arrowhead)"/>
+        </g>
+    </g>
+
+    <!-- Arrow Marker -->
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#00B4DB"/>
+        </marker>
+    </defs>
+</svg>
