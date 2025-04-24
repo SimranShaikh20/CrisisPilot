@@ -68,7 +68,7 @@ Natural disasters strike without warning, leaving communities vulnerable. Witnes
 
 ## 🧩 System Architecture  
 
-![CrisisPilot ML Architecture](https://gist.githubusercontent.com/Niraj1608/8d1fc288c82a0f1bf69c91369ac9879e/raw/df6629e4b216b2bd19442b960449f42fd266)
+![CrisisPilot ML Architecture](arc1.svg)
 
 ### ML Models in Action  
 1. **🔥 ResNet101** → Wildfire detection (90.5% accuracy)  
